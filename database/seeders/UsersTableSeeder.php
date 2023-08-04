@@ -41,7 +41,19 @@ class UsersTableSeeder extends Seeder
             'email' => 'cmanager@gmail.com',
             'password' => Hash::make('1111'),
             'role' => 'cmanager',
+        ],
+
+        
+        //user
+        [
+            
+            'name' => 'User',
+            'username' => 'user',
+            'email' => 'user@gmail.com',
+            'password' => Hash::make('1111'),
+            'role' => 'user',
         ]
+
         ]);
     }
 }
