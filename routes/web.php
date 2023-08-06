@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EditorController;
+use App\Http\Controllers\CmanagerController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +36,9 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+
+Route::get('/editor/dashboard', [EditorController::class, 'EditorDashboard'])->name('editor.dashboard');
+
+Route::get('/cmanager/dashboard', [CmanagerController::class, 'CmanagerDashboard'])->name('cmanager.dashboard');
+
+Route::get('/user/dashboard', [UserController::class, 'UserDashboard'])->name('user.dashboard');
