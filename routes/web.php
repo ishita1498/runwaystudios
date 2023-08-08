@@ -34,11 +34,26 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+//group middleware: to protect these urls
 
-Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+//auth to check the user is logged in; role to check if the user is accessing things based on their role
 
-Route::get('/editor/dashboard', [EditorController::class, 'EditorDashboard'])->name('editor.dashboard');
+Route::middleware(['auth','role:admin'])->group(function()
+{ 
+    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+});
 
-Route::get('/cmanager/dashboard', [CmanagerController::class, 'CmanagerDashboard'])->name('cmanager.dashboard');
+Route::middleware(['auth','role:editor'])->group(function()
+{ 
+    Route::get('/editor/dashboard', [EditorController::class, 'EditorDashboard'])->name('editor.dashboard');
+});
 
-Route::get('/user/dashboard', [UserController::class, 'UserDashboard'])->name('user.dashboard');
+Route::middleware(['auth','role:cmanager'])->group(function()
+{ 
+    Route::get('/cmanager/dashboard', [CmanagerController::class, 'CmanagerDashboard'])->name('cmanager.dashboard');
+});
+
+Route::middleware(['auth','role:user'])->group(function()
+{ 
+    Route::get('/user/dashboard', [UserController::class, 'UserDashboard'])->name('user.dashboard');
+});
